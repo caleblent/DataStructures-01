@@ -26,8 +26,21 @@ public class Pants extends Apparel {
 	public void setInseam(int inseam) {
 		this.inseam = inseam;
 	}
-
+	
 	public String toString() {
+		String str = "";
+		
+		str += "These " + this.getColor() 
+			+ " pair of pants has a waistline of " + this.getWaist()
+			+ "\" and an inseam of " + this.getInseam()
+			+ "\". It cost $" + this.getPrice()
+			+ " and is in " + this.getCondition()
+			+ " condition.";
+		
+		return str;
+	}
+
+	public String toStringJSON() {
 		String ret = "";
 		ret += "Pants : { \n    ";
 		ret += "Color : " + this.getColor() + "\n    ";

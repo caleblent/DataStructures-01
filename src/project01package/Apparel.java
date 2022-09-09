@@ -36,12 +36,19 @@ public class Apparel {
 		this.condition = condition;
 	}
 	
-	// HOW? TODO
-//	public void setCondition(String condition) {
-//		this.condition = new Condition(condition);
-//	}
-
+	
 	public String toString() {
+		String str = "";
+		
+		str += "This " + this.getColor() 
+			+ " apparel cost $" + this.getPrice()
+			+ " and is in " + this.getCondition()
+			+ " condition.";
+		
+		return str;
+	}
+
+	public String toStringJSON() {
 		String ret = "";
 		ret += "Apparel : { \n    ";
 		ret += "Color : " + this.color + "\n    ";
@@ -53,5 +60,9 @@ public class Apparel {
 
 	public void print() {
 		System.out.println(this.toString());
+	}
+	
+	public void printJSON() {
+		System.out.println(this.toStringJSON());
 	}
 }

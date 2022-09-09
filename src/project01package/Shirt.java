@@ -28,17 +28,28 @@ public class Shirt extends Apparel {
 	public void setSize(Size size) {
 		this.size = size;
 	}
-	
-//	HOW? TODO
-//	public void setSize(String size) {
-//		this.size = size;
-//	}
 
 	public void setShirtText(String shirtText) {
 		this.shirtText = shirtText;
 	}
-
+	
 	public String toString() {
+		String str = "";
+		
+		str += "This size " + this.getSize() 
+			+ " " + this.getColor() 
+			+ " shirt cost $" + this.getPrice()
+			+ " and is in " + this.getCondition()
+			+ " condition.";
+		
+		if (!this.getShirtText().equals("")) {
+			str += " It contains the text \"" + this.getShirtText() + "\".";
+		}
+		
+		return str;
+	}
+
+	public String toStringJSON() {
 		String ret = "";
 		ret += "Shirt : { \n    ";
 		ret += "Color : " + this.getColor() + "\n    ";

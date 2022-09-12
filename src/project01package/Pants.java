@@ -18,10 +18,19 @@ public class Pants extends Apparel {
 	 * @param waist
 	 * @param inseam
 	 */
-	public Pants(String color, int price, Condition condition, int waist, int inseam) {
+	public Pants(String color, int price, Condition condition, int waist, int inseam) throws IllegalArgumentException {
+		
 		super(color, price, condition);
-		this.waist = waist;
-		this.inseam = inseam;
+		
+		if (waist <= 0)
+			throw new IllegalArgumentException("Waist size must be positive");
+		else
+			this.waist = waist;
+		
+		if (inseam <= 0)
+			throw new IllegalArgumentException("Inseam length must be positive");
+		else
+			this.inseam = inseam;
 	}
 
 	/**
@@ -47,8 +56,11 @@ public class Pants extends Apparel {
 	 * 
 	 * @param waist
 	 */
-	public void setWaist(int waist) {
-		this.waist = waist;
+	public void setWaist(int waist) throws IllegalArgumentException {
+		if (waist <= 0)
+			throw new IllegalArgumentException("Waist size must be positive");
+		else
+			this.waist = waist;
 	}
 
 	/**
@@ -56,8 +68,11 @@ public class Pants extends Apparel {
 	 * 
 	 * @param inseam
 	 */
-	public void setInseam(int inseam) {
-		this.inseam = inseam;
+	public void setInseam(int inseam) throws IllegalArgumentException {
+		if (inseam <= 0)
+			throw new IllegalArgumentException("Inseam length must be positive");
+		else
+			this.inseam = inseam;
 	}
 	
 	/**
@@ -68,7 +83,7 @@ public class Pants extends Apparel {
 	public String toString() {
 		String str = "";
 		
-		str += "These " + this.getColor() 
+		str += "This " + this.getColor() 
 			+ " pair of pants has a waistline of " + this.getWaist()
 			+ "\" and an inseam of " + this.getInseam()
 			+ "\". It cost $" + this.getPrice()

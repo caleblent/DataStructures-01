@@ -16,9 +16,18 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * @param price
 	 * @param condition
 	 */
-	public Apparel(String color, int price, Condition condition) {
-		this.color = color;
-		this.price = price;
+	public Apparel(String color, int price, Condition condition) throws IllegalArgumentException {
+		if (color.isBlank())
+			throw new IllegalArgumentException("Color cannot be null or empty");
+		else
+			this.color = color;
+		
+		if (price < 0)
+			throw new IllegalArgumentException("Price cannot be negative");
+		else
+			this.price = price;
+		
+		// TODO logic to evaluate if the condition is legitimate
 		this.condition = condition;
 	}
 
@@ -54,7 +63,7 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * 
 	 * @return condition (int)
 	 */
-	public int  getConditionDecimal() {
+	public int getConditionDecimal() {
 		return this.condition.toDecimal();
 	}
 
@@ -63,8 +72,11 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * 
 	 * @param color
 	 */
-	public void setColor(String color) {
-		this.color = color;
+	public void setColor(String color) throws IllegalArgumentException {
+		if (color.isBlank())
+			throw new IllegalArgumentException("Color cannot be null or empty");
+		else
+			this.color = color;
 	}
 
 	/**
@@ -72,8 +84,11 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * 
 	 * @param price
 	 */
-	public void setPrice(int price) {
-		this.price = price;
+	public void setPrice(int price) throws IllegalArgumentException {
+		if (price < 0)
+			throw new IllegalArgumentException("Price cannot be negative");
+		else
+			this.price = price;
 	}
 
 	/**
@@ -81,7 +96,8 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * 
 	 * @param condition
 	 */
-	public void setCondition(Condition condition) {
+	public void setCondition(Condition condition) throws IllegalArgumentException {
+		// TODO logic to evaluate if the condition is legitimate
 		this.condition = condition;
 	}
 	
@@ -144,8 +160,4 @@ public abstract class Apparel implements Comparable<Apparel>{
 			return this.getConditionDecimal() - other.getConditionDecimal();
 		}
 	}
-	
-	
-	
-	
 }

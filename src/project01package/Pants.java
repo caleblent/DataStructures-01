@@ -18,7 +18,7 @@ public class Pants extends Apparel {
 	 * @param waist
 	 * @param inseam
 	 */
-	public Pants(String color, int price, Condition condition, int waist, int inseam) throws IllegalArgumentException {
+	public Pants(String color, double price, Condition condition, int waist, int inseam) throws IllegalArgumentException {
 		
 		super(color, price, condition);
 		

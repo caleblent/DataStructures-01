@@ -6,7 +6,7 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * All pieces of apparel should have a color, price, and condition
 	 */
 	private String color;
-	private int price;
+	private double price;
 	private Condition condition;
 
 	/**
@@ -16,7 +16,7 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * @param price
 	 * @param condition
 	 */
-	public Apparel(String color, int price, Condition condition) throws IllegalArgumentException {
+	public Apparel(String color, double price, Condition condition) throws IllegalArgumentException {
 		if (color.isBlank())
 			throw new IllegalArgumentException("Color cannot be null or empty");
 		else
@@ -45,7 +45,7 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * 
 	 * @return price
 	 */
-	public int getPrice() {
+	public double getPrice() {
 		return this.price;
 	}
 
@@ -84,7 +84,7 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * 
 	 * @param price
 	 */
-	public void setPrice(int price) throws IllegalArgumentException {
+	public void setPrice(double price) throws IllegalArgumentException {
 		if (price < 0)
 			throw new IllegalArgumentException("Price cannot be negative");
 		else
@@ -154,7 +154,7 @@ public abstract class Apparel implements Comparable<Apparel>{
 	public int compareTo(Apparel other){
 		if (this.getCondition().equals(other.getCondition())) {
 			// TODO evaluate based on price; low prices before high prices
-			return this.getPrice() - other.getPrice();
+			return (int) (this.getPrice() - other.getPrice());
 		} else {
 			// TODO evaluate based on condition
 			return this.getConditionDecimal() - other.getConditionDecimal();

@@ -18,7 +18,7 @@ public class Shirt extends Apparel {
 	 * @param condition
 	 * @param size
 	 */
-	public Shirt(String color, int price, Condition condition, Size size) {
+	public Shirt(String color, double price, Condition condition, Size size) {
 		super(color, price, condition);
 		this.size = size;
 		this.shirtText = "";
@@ -33,7 +33,7 @@ public class Shirt extends Apparel {
 	 * @param size
 	 * @param shirtText
 	 */
-	public Shirt(String color, int price, Condition condition, Size size, String shirtText) {
+	public Shirt(String color, double price, Condition condition, Size size, String shirtText) {
 		super(color, price, condition);
 		this.size = size;
 		this.shirtText = shirtText;

@@ -4,9 +4,33 @@ public class WardrobeDriver {
 
 	public static void main(String[] args) {
 
+		Shirt whiteTank = new Shirt("white", 3, Condition.NEW, Size.M);
+		Shirt blueShirt = new Shirt("blue", 18, Condition.GOOD, Size.M);
+		Shirt greenTank = new Shirt("green", 6, Condition.POOR, Size.M);
+		Shirt redVNeck = new Shirt("red", 5, Condition.TRASHED, Size.S);
+		
+		Shirt grayVNeck = new Shirt("gray", 4, Condition.NEW, Size.L);
+		Shirt blackShirt = new Shirt("black", 8, Condition.GOOD, Size.M);
+		Shirt hawaiian = new Shirt("colorful", 2, Condition.POOR, Size.M);
+		Shirt brownTank = new Shirt("brown", 11, Condition.NEW, Size.S);
+		
+//		System.out.println("whiteTank condition: " + whiteTank.getCondition() + " : " + whiteTank.getConditionDecimal());
+//		System.out.println("blueShirt condition: " + blueShirt.getCondition() + " : " + blueShirt.getConditionDecimal());
+//		System.out.println("greenTank condition: " + greenTank.getCondition() + " : " + greenTank.getConditionDecimal());
+//		System.out.println("redVNeck condition: " + redVNeck.getCondition() + " : " + redVNeck.getConditionDecimal());
+		
+		System.out.println(whiteTank.compareTo(grayVNeck));
+		System.out.println(whiteTank.compareTo(blackShirt));
+		System.out.println(whiteTank.compareTo(hawaiian));
+		System.out.println(whiteTank.compareTo(brownTank));
+
+	}
+	
+	
+	public static void project1() {
 		// Caleb's swing dancing attire:
-		Apparel socks = new Apparel("white", 2, Condition.POOR);
-		Apparel blackVans = new Apparel("black", 70, Condition.POOR);
+//		Apparel socks = new Apparel("white", 2, Condition.POOR);
+//		Apparel blackVans = new Apparel("black", 70, Condition.POOR);
 		Pants jeans = new Pants("dark blue", 32, Condition.GOOD, 32, 32);
 		Shirt whiteTank = new Shirt("white", 3, Condition.NEW, Size.M);
 		Shirt blueShirt = new Shirt("blue", 18, Condition.GOOD, Size.M);
@@ -20,8 +44,8 @@ public class WardrobeDriver {
 		System.out.println("#------------------------------------------#");
 		System.out.println("| Caleb's swing dancing attire :           |");
 		System.out.println("#------------------------------------------#");
-		socks.print();
-		blackVans.print();
+//		socks.print();
+//		blackVans.print();
 		jeans.print();
 		whiteTank.print();
 		blueShirt.print();
@@ -32,8 +56,8 @@ public class WardrobeDriver {
 		System.out.println("#------------------------------------------#");
 		System.out.println("| Caleb's swing dancing attire in JSON :   |");
 		System.out.println("#------------------------------------------#");
-		socks.printJSON();
-		blackVans.printJSON();
+//		socks.printJSON();
+//		blackVans.printJSON();
 		jeans.printJSON();
 		whiteTank.printJSON();
 		blueShirt.printJSON();
@@ -55,7 +79,6 @@ public class WardrobeDriver {
 		redShirt.printJSON();
 		snazzyPants.printJSON();
 		System.out.println();
-
 	}
 	
 }

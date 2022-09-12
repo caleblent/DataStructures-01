@@ -1,6 +1,6 @@
 package project01package;
 
-public class Apparel {
+public abstract class Apparel implements Comparable<Apparel>{
 
 	/**
 	 * All pieces of apparel should have a color, price, and condition
@@ -43,10 +43,19 @@ public class Apparel {
 	/**
 	 * Fetches the apparel's condition
 	 * 
-	 * @return condition
+	 * @return condition (String)
 	 */
 	public String getCondition() {
 		return this.condition.toString();
+	}
+	
+	/**
+	 * Fetches the apparel's condition
+	 * 
+	 * @return condition (int)
+	 */
+	public int  getConditionDecimal() {
+		return this.condition.toDecimal();
 	}
 
 	/**
@@ -121,4 +130,22 @@ public class Apparel {
 	public void printJSON() {
 		System.out.println(this.toStringJSON());
 	}
+	
+	/**
+	 * 
+	 */
+	@Override
+	public int compareTo(Apparel other){
+		if (this.getCondition().equals(other.getCondition())) {
+			// TODO evaluate based on price; low prices before high prices
+			return this.getPrice() - other.getPrice();
+		} else {
+			// TODO evaluate based on condition
+			return this.getConditionDecimal() - other.getConditionDecimal();
+		}
+	}
+	
+	
+	
+	
 }

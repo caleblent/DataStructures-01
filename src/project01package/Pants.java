@@ -19,18 +19,9 @@ public class Pants extends Apparel {
 	 * @param inseam
 	 */
 	public Pants(String color, double price, Condition condition, int waist, int inseam) throws IllegalArgumentException {
-		
 		super(color, price, condition);
-		
-		if (waist <= 0)
-			throw new IllegalArgumentException("Waist size must be positive");
-		else
-			this.waist = waist;
-		
-		if (inseam <= 0)
-			throw new IllegalArgumentException("Inseam length must be positive");
-		else
-			this.inseam = inseam;
+		this.setWaist(waist);
+		this.setInseam(inseam);
 	}
 
 	/**
@@ -80,12 +71,13 @@ public class Pants extends Apparel {
 	 * 
 	 * @return String
 	 */
+	@Override 
 	public String toString() {
 		String str = "";
 		
 		str += "This " + this.getColor() 
-			+ " pair of pants has a waistline of " + this.getWaist()
-			+ "\" and an inseam of " + this.getInseam()
+			+ " pair of pants has a waistline of " + this.waist
+			+ "\" and an inseam of " + this.inseam
 			+ "\". It cost $" + this.getPrice()
 			+ " and is in " + this.getCondition()
 			+ " condition.";
@@ -99,6 +91,7 @@ public class Pants extends Apparel {
 	 * 
 	 * @return String
 	 */
+	@Override
 	public String toStringJSON() {
 		String ret = "";
 		ret += "Pants : { \n    ";

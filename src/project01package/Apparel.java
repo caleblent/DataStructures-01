@@ -8,6 +8,8 @@ public abstract class Apparel implements Comparable<Apparel>{
 	private String color;
 	private double price;
 	private Condition condition;
+	
+	// array of all conditions to check and see if condition exists
 	private Condition[] conditions = {
 			Condition.NEW,
 			Condition.GOOD,
@@ -45,13 +47,22 @@ public abstract class Apparel implements Comparable<Apparel>{
 	public double getPrice() {
 		return this.price;
 	}
+	
+	/**
+	 * Fetches the apparel's condition
+	 * 
+	 * @return condition (Condition)
+	 */
+	public Condition getCondition() {
+		return this.condition;
+	}
 
 	/**
 	 * Fetches the apparel's condition
 	 * 
 	 * @return condition (String)
 	 */
-	public String getCondition() {
+	public String getConditionString() {
 		return this.condition.toString();
 	}
 	
@@ -60,8 +71,8 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * 
 	 * @return condition (int)
 	 */
-	public int getConditionDecimal() {
-		return this.condition.toDecimal();
+	public int getConditionInt() {
+		return this.condition.toInt();
 	}
 
 	/**
@@ -95,9 +106,12 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 */
 	public void setCondition(Condition condition) throws IllegalArgumentException {
 		for (int i = 0; i < this.conditions.length; i++) {
-			if (conditions[i].equals(condition))
+			if (conditions[i].toString().equals(condition.toString())) {
 				this.condition = condition;
+				return;
+			}
 		}
+		throw new IllegalArgumentException("Condition inputted does not exist");
 	}
 	
 	/**
@@ -156,7 +170,7 @@ public abstract class Apparel implements Comparable<Apparel>{
 			return (int) (this.getPrice() - other.getPrice());
 		} else {
 			// TODO evaluate based on condition
-			return this.getConditionDecimal() - other.getConditionDecimal();
+			return this.getConditionInt() - other.getConditionInt();
 		}
 	}
 }

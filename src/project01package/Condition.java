@@ -16,7 +16,7 @@ public enum Condition {
 	// GOOD = 2
 	// POOR = 1
 	// TRASHED = 0
-	public int toDecimal() {
+	public int toInt() {
 		if (mCond.equals("new"))
 			return 3;
 		else if (mCond.equals("good"))

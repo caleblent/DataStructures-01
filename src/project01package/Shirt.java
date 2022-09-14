@@ -7,8 +7,16 @@ public class Shirt extends Apparel {
 	 * all apparel have (color, price, condition). Some may have text
 	 * on the shirt as well.
 	 */
-	private Size size;
 	private String shirtText = "";
+	private Size size;
+	
+	// array of all sizes to check and see if size exists
+	private Size[] sizes = {
+			Size.XL,
+			Size.L,
+			Size.M,
+			Size.S
+	};
 
 	/**
 	 * Constructor function for shirt WITHOUT shirt text
@@ -20,8 +28,8 @@ public class Shirt extends Apparel {
 	 */
 	public Shirt(String color, double price, Condition condition, Size size) {
 		super(color, price, condition);
-		this.size = size;
-		this.shirtText = "";
+		this.setSize(size);
+		this.setShirtText(color);
 	}
 
 	/**
@@ -42,9 +50,18 @@ public class Shirt extends Apparel {
 	/**
 	 * Fetches the shirt's size
 	 * 
-	 * @return size
+	 * @return size (Size)
 	 */
-	public String getSize() {
+	public Size getSize() {
+		return this.size;
+	}
+	
+	/**
+	 * Fetches the shirt's size
+	 * 
+	 * @return size (String)
+	 */
+	public String getSizeString() {
 		return this.size.toString();
 	}
 
@@ -62,8 +79,14 @@ public class Shirt extends Apparel {
 	 * 
 	 * @param size
 	 */
-	public void setSize(Size size) {
-		this.size = size;
+	public void setSize(Size size) throws IllegalArgumentException {
+		for (int i = 0; i < this.sizes.length; i++) {
+			if (sizes[i].toString().equals(size.toString())) {
+				this.size = size;
+				return;
+			}
+		}
+		throw new IllegalArgumentException("Size inputted does not exist");
 	}
 
 	/**
@@ -80,16 +103,17 @@ public class Shirt extends Apparel {
 	 * 
 	 * @return String
 	 */
+	@Override
 	public String toString() {
 		String str = "";
 		
-		str += "This size " + this.getSize() 
+		str += "This size " + this.size.toString() 
 			+ " " + this.getColor() 
 			+ " shirt cost $" + this.getPrice()
 			+ " and is in " + this.getCondition()
 			+ " condition.";
 		
-		if (! this.getShirtText().equals("")) {
+		if (! this.shirtText.equals("")) {
 			str += " It contains the text \"" + this.shirtText + "\".";
 		}
 		
@@ -102,6 +126,7 @@ public class Shirt extends Apparel {
 	 * 
 	 * @return String
 	 */
+	@Override
 	public String toStringJSON() {
 		String ret = "";
 		ret += "Shirt : { \n    ";

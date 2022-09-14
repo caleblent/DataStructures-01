@@ -18,9 +18,8 @@ public class WardrobeDriver {
 	/** Store the list of clothes in the wardrobe */
 	private ArrayList<Apparel> myClothes;
 	
-	
 	/**
-	 * 
+	 * Constructor function for WardrobeDriver class
 	 */
 	public WardrobeDriver() {
 		super();
@@ -28,30 +27,35 @@ public class WardrobeDriver {
 	}
 
 	/**
-	 * A method to hard-code some example clothes
+	 * BEFORE: A method to hard-code some example clothes
+	 * 
+	 * NOW: This method allows user to input Apparel objects into myWardrobe
 	 */
 	private void populate(){
 		Scanner input = new Scanner(System.in);
 		
 		//TODO Collect price/color until user supplies valid input
 		
-		// User adds 3 shirts
+		// User adds 3 shirts - index goes from 0 to 2
 		int index = 0;
-//		while(index < 3) {
-//			if(addShirt(input)) {
-//				index++;
-//			}
-//		}
-//		index = 0;
 		while(index < 3) {
+			// addShirt() method attempts to add a shirt object to the myClothes ArrayList
+			// if successful, returns true and the index is incremented
+			if(addShirt(input)) {
+				index++;
+			}
+		}
+		
+		// User adds 3 pairs of pants - index now goes from 3 to 5
+		while(index < 6) {
+			// addPants() method attempts to add a pants object to the myClothes ArrayList
+			// if successful, returns true and the index is incremented
 			if(addPants(input)) {
 				index++;
 			}
 		}
-//		????
-//		myClothes.add(new Shirt(color, price, Condition.NEW, Size.M));
-//		????
 		
+		// hard-coded Apparel examples for testing purposes
 //		myClothes.add(new Shirt("white", 9.99, Condition.POOR, Size.M, ""));
 //		myClothes.add(new Pants("blue", 29.99, Condition.NEW, 30, 32));
 //		myClothes.add(new Pants("black", 39.99, Condition.TRASHED, 44, 35));
@@ -60,7 +64,6 @@ public class WardrobeDriver {
 		//Your Apparel class should implement Comparable<Apparel> interface, which
 		//then makes you compatible with this line.  Uncomment it once you've read
 		//this.
-		//TODO uncomment the line below
 		Collections.sort(myClothes);
 	}
 	
@@ -68,6 +71,7 @@ public class WardrobeDriver {
 	 * Override the default toString to print a list of the clothes
 	 * in the wardrobe
 	 */
+	@Override
 	public String toString(){
 		String myString = "";
 		for(Apparel a : myClothes){
@@ -77,6 +81,11 @@ public class WardrobeDriver {
 	}
 
 	/**
+	 * Main driver method, unaltered from the boiler code state.
+	 * 
+	 * Initializes myWardrobe as a new WardrobeDriver object, then
+	 * calls populate() to fill it with Apparel objects of type 
+	 * shirt and pants, then prints it to the console.
 	 * 
 	 * @param args
 	 */
@@ -84,16 +93,12 @@ public class WardrobeDriver {
 		WardrobeDriver myWardrobe = new WardrobeDriver();
 		myWardrobe.populate();
 		System.out.print(myWardrobe);
-		
 	}
 	
 	
-	
-	
-	
-	
-	
-	
+	/////////////////////////////////////////////////////
+	/////////////////// NEW METHODS /////////////////////
+	/////////////////////////////////////////////////////
 	
 	public static boolean addShirt(Scanner console) throws InputMismatchException {
 		
@@ -112,7 +117,7 @@ public class WardrobeDriver {
 			shirt.setColor(color);
 			
 			// PRICE
-			System.out.println("How much did the shirt cost (in USD), rounded to the nearest dollar?");
+			System.out.println("How much did the shirt cost (in USD)?");
 			price = console.nextDouble();
 			shirt.setPrice(price);
 			
@@ -131,7 +136,6 @@ public class WardrobeDriver {
 			System.out.println("Exception thrown: " + e);
 			return false;
 		}
-		
 		return true;
 	}
 	
@@ -153,7 +157,7 @@ public class WardrobeDriver {
 			pants.setColor(color);
 			
 			// PRICE
-			System.out.println("How much did the pants cost?");
+			System.out.println("How much did the pants cost (in USD)?");
 			price = console.nextDouble();
 			pants.setPrice(price);
 			
@@ -176,7 +180,6 @@ public class WardrobeDriver {
 		}
 		return true;
 	}
-	
 	
 }
 	

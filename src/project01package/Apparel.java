@@ -8,6 +8,12 @@ public abstract class Apparel implements Comparable<Apparel>{
 	private String color;
 	private double price;
 	private Condition condition;
+	private Condition[] conditions = {
+			Condition.NEW,
+			Condition.GOOD,
+			Condition.POOR,
+			Condition.TRASHED
+	};
 
 	/**
 	 * Constructor function for apparel
@@ -17,18 +23,9 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * @param condition
 	 */
 	public Apparel(String color, double price, Condition condition) throws IllegalArgumentException {
-		if (color.isBlank())
-			throw new IllegalArgumentException("Color cannot be null or empty");
-		else
-			this.color = color;
-		
-		if (price < 0)
-			throw new IllegalArgumentException("Price cannot be negative");
-		else
-			this.price = price;
-		
-		// TODO logic to evaluate if the condition is legitimate
-		this.condition = condition;
+		this.setColor(color);
+		this.setPrice(price);
+		this.setCondition(condition);
 	}
 
 	/**
@@ -97,8 +94,10 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * @param condition
 	 */
 	public void setCondition(Condition condition) throws IllegalArgumentException {
-		// TODO logic to evaluate if the condition is legitimate
-		this.condition = condition;
+		for (int i = 0; i < this.conditions.length; i++) {
+			if (conditions[i].equals(condition))
+				this.condition = condition;
+		}
 	}
 	
 	/**

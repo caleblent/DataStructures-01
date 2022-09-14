@@ -8,7 +8,7 @@ public class Shirt extends Apparel {
 	 * on the shirt as well.
 	 */
 	private Size size;
-	private String shirtText;
+	private String shirtText = "";
 
 	/**
 	 * Constructor function for shirt WITHOUT shirt text
@@ -89,8 +89,8 @@ public class Shirt extends Apparel {
 			+ " and is in " + this.getCondition()
 			+ " condition.";
 		
-		if (!this.getShirtText().equals("")) {
-			str += " It contains the text \"" + this.getShirtText() + "\".";
+		if (! this.getShirtText().equals("")) {
+			str += " It contains the text \"" + this.shirtText + "\".";
 		}
 		
 		return str;

@@ -28,4 +28,16 @@ public enum Condition {
 		else // indicates something went wrong
 			return -1;
 	}
+	public static Condition intToCondition(int num) throws IllegalArgumentException {
+		if (num == 3)
+			return Condition.NEW;
+		else if (num == 2)
+			return Condition.GOOD;
+		else if (num == 1)
+			return Condition.POOR;
+		else if (num == 0)
+			return Condition.TRASHED;
+		else
+			throw new IllegalArgumentException("Integer supplied must be 0, 1, 2, or 3");
+	}
 }

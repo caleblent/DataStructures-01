@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.InputMismatchException;
 
 /**
  * COS212 Project 2
@@ -17,6 +16,10 @@ import java.util.InputMismatchException;
 public class WardrobeDriver {
 	/** Store the list of clothes in the wardrobe */
 	private ArrayList<Apparel> myClothes;
+	
+	// declare the number of shirts and pants to add
+	private final int SHIRT_COUNT = 3;
+	private final int PANTS_COUNT = 3;
 	
 	/**
 	 * Constructor function for WardrobeDriver class
@@ -38,7 +41,7 @@ public class WardrobeDriver {
 		
 		// User adds 3 shirts - index goes from 0 to 2
 		int index = 0;
-		while(index < 3) {
+		while(index < SHIRT_COUNT) {
 			// addShirt() method attempts to add a shirt object to the myClothes ArrayList
 			// if successful, returns true and the index is incremented
 			if(addShirt(input)) {
@@ -46,8 +49,9 @@ public class WardrobeDriver {
 			}
 		}
 		
-		// User adds 3 pairs of pants - index now goes from 3 to 5
-		while(index < 6) {
+		// User adds 3 pairs of pants - reset index to 0
+		index = 0;
+		while(index < PANTS_COUNT) {
 			// addPants() method attempts to add a pants object to the myClothes ArrayList
 			// if successful, returns true and the index is incremented
 			if(addPants(input)) {
@@ -100,12 +104,14 @@ public class WardrobeDriver {
 	/////////////////// NEW METHODS /////////////////////
 	/////////////////////////////////////////////////////
 	
-	public static boolean addShirt(Scanner console) throws InputMismatchException {
+	public static boolean addShirt(Scanner console) throws InputMismatchException, IllegalArgumentException {
 		
 		String color = "none";
 		double price = 0;
-//		Condition condition;
-//		Size size;
+		int condInt;
+		Condition condition;
+		int sizeInt;
+		Size size;
 		String shirtText;
 		
 		Shirt shirt = new Shirt(color, price, Condition.NEW, Size.S);
@@ -122,29 +128,46 @@ public class WardrobeDriver {
 			shirt.setPrice(price);
 			
 			// CONDITION
-			// TODO ADD
+			System.out.println("Enter the condition: "
+					+ "\n3=NEW"
+					+ "\n2=GOOD"
+					+ "\n1=POOR"
+					+ "\n0=TRASHED\n");
+			condInt = console.nextInt();
+			condition = Condition.intToCondition(condInt);
+			shirt.setCondition(condition);
+			
+			// SIZE
+			System.out.println("Enter the size: "
+					+ "\n3=XL"
+					+ "\n2=L"
+					+ "\n1=M"
+					+ "\n0=S\n");
+			sizeInt = console.nextInt();
+			size = Size.intToSize(sizeInt);
+			shirt.setSize(size);
 			
 			// SHIRT TEXT
 			System.out.println("What does the text on the shirt say?");
 			shirtText = console.next();
 			shirt.setShirtText(shirtText);
 			
-			// SIZE
-			// TODO ADD
-			
 		} catch (InputMismatchException e) {
-			System.out.println("Exception thrown: " + e);
+			System.out.println("Exception thrown : IME : " + e);
+			return false;
+		} catch (IllegalArgumentException e) {
+			System.out.println("Exception thrown : IAE : " + e);
 			return false;
 		}
 		return true;
 	}
 	
-	public static boolean addPants(Scanner console) throws InputMismatchException {
+	public static boolean addPants(Scanner console) throws InputMismatchException, IllegalArgumentException {
 		
 		String color = "none";
 		double price = 0;
-//		Condition condition;
-//		String condStr;
+		int condInt;
+		Condition condition;
 		int waist = 1;
 		int inseam = 1;
 		
@@ -162,7 +185,14 @@ public class WardrobeDriver {
 			pants.setPrice(price);
 			
 			// CONDITION
-			// TODO ADD
+			System.out.println("Enter the condition: "
+					+ "\n3=NEW"
+					+ "\n2=GOOD"
+					+ "\n1=POOR"
+					+ "\n0=TRASHED\n");
+			condInt = console.nextInt();
+			condition = Condition.intToCondition(condInt);
+			pants.setCondition(condition);
 			
 			// WAIST
 			System.out.println("What is the waist size (in inches)?");
@@ -175,11 +205,16 @@ public class WardrobeDriver {
 			pants.setInseam(inseam);
 			
 		} catch (InputMismatchException e) {
-			System.out.println("Exception thrown: " + e);
+			System.out.println("Exception thrown : IME " + e);
+			return false;
+		} catch (IllegalArgumentException e) {
+			System.out.println("Exception thrown : IAE : " + e);
 			return false;
 		}
 		return true;
 	}
+	
+	
 	
 }
 	

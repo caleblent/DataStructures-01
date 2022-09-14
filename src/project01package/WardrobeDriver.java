@@ -17,7 +17,7 @@ public class WardrobeDriver {
 	/** Store the list of clothes in the wardrobe */
 	private ArrayList<Apparel> myClothes;
 	
-	// declare the number of shirts and pants to add
+	// declare the number of shirts and pants for the user to add
 	private final int SHIRT_COUNT = 3;
 	private final int PANTS_COUNT = 3;
 	
@@ -36,8 +36,6 @@ public class WardrobeDriver {
 	 */
 	private void populate(){
 		Scanner input = new Scanner(System.in);
-		
-		//TODO Collect price/color until user supplies valid input
 		
 		// User adds 3 shirts - index goes from 0 to 2
 		int index = 0;
@@ -65,9 +63,6 @@ public class WardrobeDriver {
 //		myClothes.add(new Pants("black", 39.99, Condition.TRASHED, 44, 35));
 //		myClothes.add(new Pants("khaki", 42.99, Condition.GOOD, 40, 38));
 		
-		//Your Apparel class should implement Comparable<Apparel> interface, which
-		//then makes you compatible with this line.  Uncomment it once you've read
-		//this.
 		Collections.sort(myClothes);
 	}
 	
@@ -104,6 +99,21 @@ public class WardrobeDriver {
 	/////////////////// NEW METHODS /////////////////////
 	/////////////////////////////////////////////////////
 	
+	/**
+	 * Accepts user input to create a Shirt object, to then be added to the myClothes ArrayList
+	 * 
+	 * Each input goes thru independent input validation
+	 * 
+	 * If all inputs pass, then the Shirt object gets added and the function returns TRUE
+	 * 
+	 * Otherwise it will throw an exception, return FALSE, and the index of the while loop
+	 * making the call will not be incremented
+	 * 
+	 * @param console
+	 * @return boolean
+	 * @throws InputMismatchException
+	 * @throws IllegalArgumentException
+	 */
 	public static boolean addShirt(Scanner console) throws InputMismatchException, IllegalArgumentException {
 		
 		String color = "none";
@@ -118,12 +128,12 @@ public class WardrobeDriver {
 		
 		try {
 			// COLOR
-			System.out.println("What color is the shirt?");
+			System.out.println("What color is the shirt?\n");
 			color = console.next();
 			shirt.setColor(color);
 			
 			// PRICE
-			System.out.println("How much did the shirt cost (in USD)?");
+			System.out.println("How much did the shirt cost (in USD)?\n");
 			price = console.nextDouble();
 			shirt.setPrice(price);
 			
@@ -148,20 +158,35 @@ public class WardrobeDriver {
 			shirt.setSize(size);
 			
 			// SHIRT TEXT
-			System.out.println("What does the text on the shirt say?");
+			System.out.println("What does the text on the shirt say?\n");
 			shirtText = console.next();
 			shirt.setShirtText(shirtText);
 			
 		} catch (InputMismatchException e) {
-			System.out.println("Exception thrown : IME : " + e);
+			System.out.println("Exception thrown: IME: " + e);
 			return false;
 		} catch (IllegalArgumentException e) {
-			System.out.println("Exception thrown : IAE : " + e);
+			System.out.println("Exception thrown: IAE: " + e);
 			return false;
 		}
 		return true;
 	}
 	
+	/**
+	 * Accepts user input to create a Pants object, to then be added to the myClothes ArrayList
+	 * 
+	 * Each input goes thru independent input validation
+	 * 
+	 * If all inputs pass, then the Pants object gets added and the function returns TRUE
+	 * 
+	 * Otherwise it will throw an exception, return FALSE, and the index of the while loop
+	 * making the call will not be incremented
+	 * 
+	 * @param console
+	 * @return boolean
+	 * @throws InputMismatchException
+	 * @throws IllegalArgumentException
+	 */
 	public static boolean addPants(Scanner console) throws InputMismatchException, IllegalArgumentException {
 		
 		String color = "none";
@@ -175,12 +200,12 @@ public class WardrobeDriver {
 		
 		try {
 			// COLOR
-			System.out.println("What color are the pants?");
+			System.out.println("What color are the pants?\n");
 			color = console.next();
 			pants.setColor(color);
 			
 			// PRICE
-			System.out.println("How much did the pants cost (in USD)?");
+			System.out.println("How much did the pants cost (in USD)?\n");
 			price = console.nextDouble();
 			pants.setPrice(price);
 			
@@ -195,35 +220,22 @@ public class WardrobeDriver {
 			pants.setCondition(condition);
 			
 			// WAIST
-			System.out.println("What is the waist size (in inches)?");
+			System.out.println("What is the waist size (in inches)?\n");
 			waist = console.nextInt();
 			pants.setWaist(waist);			
 			
 			// INSEAM
-			System.out.println("What is the inseam length (in inches)?");
+			System.out.println("What is the inseam length (in inches)?\n");
 			inseam = console.nextInt();
 			pants.setInseam(inseam);
 			
 		} catch (InputMismatchException e) {
-			System.out.println("Exception thrown : IME " + e);
+			System.out.println("Exception thrown: IME: " + e);
 			return false;
 		} catch (IllegalArgumentException e) {
-			System.out.println("Exception thrown : IAE : " + e);
+			System.out.println("Exception thrown: IAE: " + e);
 			return false;
 		}
 		return true;
 	}
-	
-	
-	
 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
- 	  

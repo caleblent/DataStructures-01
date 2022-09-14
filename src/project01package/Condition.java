@@ -1,5 +1,11 @@
 package project01package;
 
+// CONVERSION CHART (Condition - Number)
+//  NEW = 3
+//  GOOD = 2
+//  POOR = 1
+//  TRASHED = 0
+
 public enum Condition {
 	NEW("new"), 
 	GOOD("good"), 
@@ -11,11 +17,15 @@ public enum Condition {
 	}
 	public String toString(){ return mCond; }
 	
-	// converts the condition to a number
-	// NEW = 3
-	// GOOD = 2
-	// POOR = 1
-	// TRASHED = 0
+	
+	/**
+	 * Converts the given condition to its numeric equivalent
+	 * (Refer to conversion chart at top of file)
+	 * 
+	 * @param num
+	 * @return Condition (that correlates to the number provided)
+	 * @throws IllegalArgumentException
+	 */
 	public int toInt() {
 		if (mCond.equals("new"))
 			return 3;
@@ -28,6 +38,15 @@ public enum Condition {
 		else // indicates something went wrong
 			return -1;
 	}
+	
+	/**
+	 * Accepts an integer from 0 to 3 (inclusive) and returns the Condition equivalent
+	 * (Refer to conversion chart at top of file)
+	 * 
+	 * @param num
+	 * @return Condition (that correlates to the number provided)
+	 * @throws IllegalArgumentException
+	 */
 	public static Condition intToCondition(int num) throws IllegalArgumentException {
 		if (num == 3)
 			return Condition.NEW;

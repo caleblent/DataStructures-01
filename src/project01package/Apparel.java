@@ -81,7 +81,7 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * @param color
 	 */
 	public void setColor(String color) throws IllegalArgumentException {
-		if (color.isBlank())
+		if (color == null || color.isBlank())
 			throw new IllegalArgumentException("Color cannot be null or empty");
 		else
 			this.color = color;
@@ -105,6 +105,8 @@ public abstract class Apparel implements Comparable<Apparel>{
 	 * @param condition
 	 */
 	public void setCondition(Condition condition) throws IllegalArgumentException {
+		if (condition == null)
+			throw new IllegalArgumentException("Condition cannot be null");
 		for (int i = 0; i < this.conditions.length; i++) {
 			if (conditions[i].toString().equals(condition.toString())) {
 				this.condition = condition;

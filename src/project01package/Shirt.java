@@ -43,8 +43,8 @@ public class Shirt extends Apparel {
 	 */
 	public Shirt(String color, double price, Condition condition, Size size, String shirtText) {
 		super(color, price, condition);
-		this.size = size;
-		this.shirtText = shirtText;
+		this.setSize(size);
+		this.setShirtText(shirtText);
 	}
 	
 	/**
@@ -80,6 +80,8 @@ public class Shirt extends Apparel {
 	 * @param size
 	 */
 	public void setSize(Size size) throws IllegalArgumentException {
+		if (size == null)
+			throw new IllegalArgumentException("Size cannot be null");
 		for (int i = 0; i < this.sizes.length; i++) {
 			if (sizes[i].toString().equals(size.toString())) {
 				this.size = size;
